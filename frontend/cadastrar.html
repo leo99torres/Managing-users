@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastrar Usuário</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-black text-green-400 flex flex-col items-center py-10 px-4">
+
+  <h1 class="text-3xl font-bold text-green-300 mb-6">Cadastrar Novo Usuário</h1>
+
+  <!-- Quando o botão de Cadastrar for clicado, chamo a função no Frontend  -->
+  <form id="formCadastro" onsubmit="cadastrarUsuario(event)" class="bg-gray-900 p-6 rounded-lg w-full max-w-xl">
+    <label>Nome:</label>
+    <input type="text" id="nome" required class="w-full bg-gray-800 text-green-400 border border-green-500 rounded px-4 py-2 mb-4">
+
+    <label>Email:</label>
+    <input type="email" id="email" required class="w-full bg-gray-800 text-green-400 border border-green-500 rounded px-4 py-2 mb-4">
+
+    <label>Telefone:</label>
+    <input type="text" id="telefone" required class="w-full bg-gray-800 text-green-400 border border-green-500 rounded px-4 py-2 mb-4">
+
+    <label>Role (admin/viewer):</label>
+    <input type="text" id="role" class="w-full bg-gray-800 text-green-400 border border-green-500 rounded px-4 py-2 mb-4">
+
+    <!-- Botão ajustado -->
+  <div class="flex justify-center">
+  <button type="submit"
+    class="bg-gray-800 text-green-400 border border-green-500 px-8 py-2 rounded hover:bg-green-500 hover:text-black font-bold transition-all transform hover:scale-105 active:scale-95"
+  >
+    Cadastrar
+  </button>
+</div>
+
+  </form>
+
+  <p id="mensagemCadastro" class="text-center mt-4 text-green-400"></p>
+
+  <script src="js/script.js"></script>
+
+  <!-- Botão voltar -->
+  <a href="index.html"
+    class="mt-12 inline-flex items-center justify-center gap-2 bg-gray-800 text-green-400 border border-green-500 px-6 py-3 rounded-full hover:bg-green-500 hover:text-black font-bold transition-all"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+    Voltar
+  </a>
+
+</body>
+</html>

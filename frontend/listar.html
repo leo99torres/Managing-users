@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Listar Usuários</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+    .fonte-legivel {
+      font-family: 'Arial', sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-black text-green-400 flex flex-col items-center py-10 px-4">
+
+  <h1 class="text-3xl font-bold text-green-300 mb-6">Usuários Cadastrados</h1>
+
+  <button id="btnListar"
+    onclick="carregarUsuarios()"
+    class="mb-6 bg-gray-900 text-green-400 border border-green-500 px-6 py-3 rounded-full hover:bg-green-500 hover:text-black font-bold transition-all transform hover:scale-105 active:scale-95"
+  >
+    Listar usuários
+  </button>
+
+  <table id="tabelaUsuarios" class="w-full max-w-4xl border-collapse">
+    <thead>
+      <tr>
+        <th class="border border-gray-700 px-4 py-2 bg-gray-800 text-green-300 text-center">Nome</th>
+        <th class="border border-gray-700 px-4 py-2 bg-gray-800 text-green-300 text-center">Email</th>
+        <th class="border border-gray-700 px-4 py-2 bg-gray-800 text-green-300 text-center">Telefone</th>
+        <th class="border border-gray-700 px-4 py-2 bg-gray-800 text-green-300 text-center">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Usuários aqui -->
+    </tbody>
+  </table>
+
+  <script>
+    function carregarUsuarios() {
+      const btn = document.getElementById("btnListar");
+      if (btn) btn.style.display = "none";
+
+      fetch("http://localhost:8000/users")
+        .then(res => res.json())
+        .then(usuarios => {
+          const tabela = document.querySelector("#tabelaUsuarios tbody");
+          if (!tabela) return;
+          tabela.innerHTML = "";
+
+          usuarios.forEach(usuario => {
+            const linha = document.createElement("tr");
+            linha.innerHTML = `
+              <td class="fonte-legivel text-center border-b border-gray-700 py-2">${usuario.name}</td>
+              <td class="fonte-legivel text-center border-b border-gray-700 py-2">${usuario.email}</td>
+              <td class="fonte-legivel text-center border-b border-gray-700 py-2">${usuario.phone}</td>
+              <td class="fonte-legivel text-center border-b border-gray-700 py-2">${usuario.role ?? ""}</td>
+            `;
+            tabela.appendChild(linha);
+          });
+        })
+        .catch(err => {
+          alert("Erro ao carregar usuários");
+          console.error(err);
+        });
+    }
+  </script>
+
+  <a href="index.html"
+     class="mt-12 inline-flex items-center justify-center gap-2 bg-gray-800 text-green-400 border border-green-500 px-6 py-3 rounded-full hover:bg-green-500 hover:text-black font-bold transition-all"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+    Voltar
+  </a>
+
+</body>
+</html>
